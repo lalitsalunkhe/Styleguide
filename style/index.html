@@ -624,6 +624,8 @@
   --accent-soft:            #FEE3DF;
   --accent-soft-border:     #FEC3B8;
   --accent-soft-text:       #7A3525;
+  /* Teal-800 — dark surface / footer / dark card variant */
+  --oregano-dark: #004952;
   /* Semantic */
   --success-bg: #E6F1EA;  --success-fg: #2E6D4E;
   --warning-bg: #FFFBEB;  --warning-fg: #B45309;
@@ -674,13 +676,20 @@
   --font-sans:  "Inter", "Helvetica Neue", Arial, sans-serif;
 }
 :root[data-guide="oregano"][data-fontset="lora"] .brand__mark { font-family: var(--font-serif); font-style: italic; font-weight: 500; letter-spacing: -0.01em; }
-/* Oregano body — 18px, no tight tracking */
-:root[data-guide="oregano"] body { font-size: 18px; line-height: 1.55; letter-spacing: 0; }
-/* Oregano headings — light/regular weight, tight tracking, teal */
+/* Oregano body — 18px, no tight tracking; body copy uses near-black #232323, not teal */
+:root[data-guide="oregano"] body { font-size: 18px; line-height: 1.55; letter-spacing: 0; color: #232323; }
+/* Oregano headings — regular weight, tight negative tracking, teal-900 */
 :root[data-guide="oregano"] h1, :root[data-guide="oregano"] h2,
 :root[data-guide="oregano"] h3, :root[data-guide="oregano"] h4,
 :root[data-guide="oregano"] .scr-block__title,
 :root[data-guide="oregano"] .wel-title { font-weight: 400; letter-spacing: -0.04em; color: var(--text-primary); font-family: var(--font-sans); }
+/* Paragraphs stay near-black; headings, interactive chrome use teal via --text-primary */
+:root[data-guide="oregano"] p,
+:root[data-guide="oregano"] .sec-intro,
+:root[data-guide="oregano"] .demo-group__title { color: #232323; }
+/* Oregano eyebrow — Space Mono, subtle 0.04em tracking (vs grotesque's 0.12em overline) */
+:root[data-guide="oregano"] .anchors__title,
+:root[data-guide="oregano"] .scr-block__title + p { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-secondary); font-weight: 700; }
 /* Show only the active guide's font picker + tone picker */
 :root[data-guide="oregano"] .font-picker--soft,
 :root[data-guide="oregano"] .font-picker--grotesque,
@@ -688,12 +697,12 @@
 :root[data-guide="oregano"] .tone-picker--grotesque { display: none !important; }
 :root:not([data-guide="oregano"]) .font-picker--oregano,
 :root:not([data-guide="oregano"]) .tone-picker--oregano { display: none !important; }
-/* Oregano buttons — pill-shaped, coral primary */
+/* Oregano buttons — pill-shaped; coral = primary, teal-900 outline = secondary, teal-800 filled = dark */
 :root[data-guide="oregano"] .btn { border-radius: var(--radius-full); font-weight: 500; }
-:root[data-guide="oregano"] .btn--primary { background: var(--accent-primary); color: var(--text-on-accent); }
+:root[data-guide="oregano"] .btn--primary { background: var(--accent-primary); color: #003A43; border: 1.5px solid transparent; }
 :root[data-guide="oregano"] .btn--primary:hover { background: var(--accent-primary-hover); transform: translateY(-1px); }
-:root[data-guide="oregano"] .btn--secondary { background: transparent; color: var(--text-primary); border: 1.5px solid var(--text-primary); }
-:root[data-guide="oregano"] .btn--secondary:hover { background: var(--text-primary); color: #F8F3EB; }
+:root[data-guide="oregano"] .btn--secondary { background: transparent; color: #003A43; border: 1.5px solid #003A43; }
+:root[data-guide="oregano"] .btn--secondary:hover { background: #003A43; color: #F8F3EB; }
 /* Oregano inputs — rounded-md, teal focus */
 :root[data-guide="oregano"] .input { border-radius: var(--radius-md); border-width: 1.5px; font-size: 16px; }
 :root[data-guide="oregano"] .input:focus { border-color: var(--text-secondary); box-shadow: 0 0 0 3px rgba(0,73,82,.08); }
