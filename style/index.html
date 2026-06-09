@@ -1001,6 +1001,36 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+/* Hide the generic token table when oregano is active; show oregano palette instead */
+:root[data-guide="oregano"] #color-groups { display: none; }
+:root:not([data-guide="oregano"]) #oregano-color-groups { display: none; }
+/* Oregano named swatch grid — mirrors oregano/index.html layout */
+.oregano-swatch-group { margin-bottom: var(--space-7); }
+.oregano-swatch-group__title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  font-weight: 700;
+  margin: 0 0 var(--space-4);
+}
+.oregano-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+.oregano-swatch {
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
+}
+.oregano-swatch__chip { height: 96px; width: 100%; }
+.oregano-swatch__meta { padding: 12px 14px; }
+.oregano-swatch__name { font-weight: 600; font-size: 14px; color: var(--text-primary); line-height: 1.3; }
+.oregano-swatch__hex { font-family: var(--font-mono); font-size: 12px; color: var(--text-tertiary); margin-top: 3px; }
 .swatch-pair { display: flex; gap: var(--space-2); flex: 0 0 auto; }
 .swatch {
   position: relative;
@@ -4391,6 +4421,7 @@ html { scroll-behavior: smooth; }
       <p class="sec-intro">Every surface, text, and stroke routes through a CSS variable. Components never hardcode hex. Each row shows light and dark side-by-side so you can spot the relationship instead of toggling.</p>
 
       <div id="color-groups"></div>
+      <div id="oregano-color-groups"></div>
 
       <div class="token-group">
         <h3 class="token-group__title">Data viz · current theme</h3>
@@ -6555,6 +6586,68 @@ html { scroll-behavior: smooth; }
     sec.appendChild(rows);
     host.appendChild(sec);
   });
+  // Oregano named palette — rendered into #oregano-color-groups
+  var oreganoGroups = [
+    { title: 'Brand', swatches: [
+      { name: 'Teal 900 · primary',    hex: '#003A43' },
+      { name: 'Teal 800 · dark surface', hex: '#004952' },
+      { name: 'Teal 700 · muted text',  hex: '#3A6D71' },
+      { name: 'Coral 500 · action',     hex: '#FF8D6E' },
+      { name: 'Coral 600 · hover',      hex: '#F37E5E' },
+      { name: 'Coral 400 · tint',       hex: '#FEC3B8' }
+    ]},
+    { title: 'Surfaces & Neutrals', swatches: [
+      { name: 'Cream 50 · page',        hex: '#F8F3EB' },
+      { name: 'Cream 100 · off-white',  hex: '#F9F7F6' },
+      { name: 'Sage 100 · surface',     hex: '#EBF0EF' },
+      { name: 'Sand 100 · taupe',       hex: '#E0D3C8' },
+      { name: 'Coral 50 · tint bg',     hex: '#FFF6F3' },
+      { name: 'White',                  hex: '#FFFFFF' }
+    ]},
+    { title: 'Text & Lines', swatches: [
+      { name: 'Ink · headings',         hex: '#003A43' },
+      { name: 'Ink · body copy',        hex: '#232323' },
+      { name: 'Ink soft',               hex: '#3A6D71' },
+      { name: 'Ink mute · caption',     hex: '#82A4A7' },
+      { name: 'Line',                   hex: '#D2DCDA' }
+    ]}
+  ];
+  var oreganoHost = document.getElementById('oregano-color-groups');
+  if (oreganoHost) {
+    oreganoGroups.forEach(function (g) {
+      var sec = document.createElement('div');
+      sec.className = 'oregano-swatch-group';
+      var title = document.createElement('p');
+      title.className = 'oregano-swatch-group__title';
+      title.textContent = g.title;
+      sec.appendChild(title);
+      var grid = document.createElement('div');
+      grid.className = 'oregano-swatch-grid';
+      g.swatches.forEach(function (sw) {
+        var card = document.createElement('div');
+        card.className = 'oregano-swatch';
+        var chip = document.createElement('div');
+        chip.className = 'oregano-swatch__chip';
+        chip.style.background = sw.hex;
+        if (sw.hex === '#FFFFFF') chip.style.borderBottom = '1px solid #e8e6dc';
+        var meta = document.createElement('div');
+        meta.className = 'oregano-swatch__meta';
+        var name = document.createElement('div');
+        name.className = 'oregano-swatch__name';
+        name.textContent = sw.name;
+        var hexEl = document.createElement('div');
+        hexEl.className = 'oregano-swatch__hex';
+        hexEl.textContent = sw.hex;
+        meta.appendChild(name);
+        meta.appendChild(hexEl);
+        card.appendChild(chip);
+        card.appendChild(meta);
+        grid.appendChild(card);
+      });
+      sec.appendChild(grid);
+      oreganoHost.appendChild(sec);
+    });
+  }
   // Chart row in current theme
   var chartHost = document.getElementById('chart-row');
   if (chartHost) {
