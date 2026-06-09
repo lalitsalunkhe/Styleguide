@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>eCareLTC — Create your account</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Lora:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="oregano.css" />
+<style>
+  body { background: var(--cream-50); }
+  .auth { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
+  .auth-aside { background: var(--teal-900); color: var(--on-dark); padding: 56px 64px; display: flex; flex-direction: column; }
+  .auth-aside h2 { color: #fff; max-width: 16ch; }
+  .auth-main { display: flex; align-items: center; justify-content: center; padding: 48px 32px; }
+  .auth-card { width: 100%; max-width: 460px; }
+  .social { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .social .btn { border-color: var(--line-strong); color: var(--ink); background: #fff; font-size: 15px; }
+  .divider { display: flex; align-items: center; gap: 14px; color: var(--ink-mute); font-size: 13px; margin: 22px 0; }
+  .divider::before, .divider::after { content: ""; height: 1px; background: var(--line); flex: 1; }
+  .aside-feat { display: flex; gap: 14px; align-items: flex-start; margin-top: 22px; }
+  .aside-feat .ic { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,.1); display: grid; place-items: center; flex: none; }
+  .aside-feat h5 { color: #fff; font-size: 17px; margin: 0 0 2px; }
+  .aside-feat p { color: var(--on-dark-soft); font-size: 14px; margin: 0; }
+  .quote { margin-top: auto; padding-top: 32px; border-top: 1px solid rgba(255,255,255,.14); }
+  @media(max-width:940px){ .auth { grid-template-columns: 1fr } .auth-aside { display:none } }
+</style>
+</head>
+<body>
+<div class="auth">
+
+  <!-- ASIDE -->
+  <aside class="auth-aside">
+    <a class="brand" href="pages.html" style="color:#fff;">
+      <span class="mark"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 2c1.6 2.4 1.6 4.8 0 7.2C10.4 6.8 10.4 4.4 12 2Zm0 9.6c2.4-1.6 4.8-1.6 7.2 0-2.4 1.6-4.8 1.6-7.2 0Zm0 0c-2.4-1.6-4.8-1.6-7.2 0 2.4 1.6 4.8 1.6 7.2 0Zm0 .8v9.6" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>eCareLTC
+    </a>
+    <div style="margin-top:56px;">
+      <span class="eyebrow" style="color:var(--coral-400);">Start your 30-day trial</span>
+      <h2 class="mt-2">Everything your facility needs, finally connected.</h2>
+
+      <div class="aside-feat"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L19 7" stroke="#ff8d6e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h5>eMAR &amp; clinical charting</h5><p>Survey-ready documentation out of the box.</p></div></div>
+      <div class="aside-feat"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L19 7" stroke="#ff8d6e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h5>Census &amp; billing built in</h5><p>Automate Medicaid, Medicare, and private pay.</p></div></div>
+      <div class="aside-feat"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L19 7" stroke="#ff8d6e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h5>Go live in under 2 weeks</h5><p>White-glove onboarding and data migration.</p></div></div>
+    </div>
+    <div class="quote">
+      <p class="serif" style="color:#fff;font-size:20px;font-style:italic;">"We cut charting time nearly in half and passed our last survey with zero deficiencies."</p>
+      <p class="note" style="color:var(--on-dark-soft);margin-top:8px;">— Director of Nursing, Maplewood Care Center</p>
+    </div>
+  </aside>
+
+  <!-- FORM -->
+  <main class="auth-main">
+    <div class="auth-card">
+      <div class="flex items-center" style="justify-content:space-between;">
+        <h3>Create your account</h3>
+        <span class="badge teal">Step 1 of 4</span>
+      </div>
+      <p class="muted mt-1" style="font-size:15px;">Already have an account? <a href="#" style="color:var(--coral-600);font-weight:600;">Sign in</a></p>
+
+      <div class="social mt-3">
+        <a class="btn" href="onboarding.html"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="#003a43" d="M21.8 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.5a4.7 4.7 0 0 1-2 3.1v2.6h3.3c1.9-1.8 3-4.4 3-7.5Z"/><path fill="#003a43" d="M12 22c2.7 0 5-1 6.6-2.5l-3.3-2.6c-.9.6-2 1-3.3 1a5.8 5.8 0 0 1-5.4-4H3.2v2.6A10 10 0 0 0 12 22Z" opacity=".7"/><path fill="#003a43" d="M6.6 13.9a5.9 5.9 0 0 1 0-3.8V7.5H3.2a10 10 0 0 0 0 9l3.4-2.6Z" opacity=".5"/><path fill="#003a43" d="M12 6.2c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.2 7.5l3.4 2.6A5.8 5.8 0 0 1 12 6.2Z" opacity=".85"/></svg> Google</a>
+        <a class="btn" href="onboarding.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="#003a43"><path d="M16.4 1H7.6A6.6 6.6 0 0 0 1 7.6v8.8A6.6 6.6 0 0 0 7.6 23h8.8a6.6 6.6 0 0 0 6.6-6.6V7.6A6.6 6.6 0 0 0 16.4 1ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"/></svg> SSO</a>
+      </div>
+
+      <div class="divider">or sign up with email</div>
+
+      <form onsubmit="location.href='onboarding.html';return false;">
+        <div class="field"><label>Facility name</label><input placeholder="e.g. Maplewood Care Center" required /></div>
+        <div class="field-row">
+          <div class="field"><label>First name</label><input placeholder="Jane" required /></div>
+          <div class="field"><label>Last name</label><input placeholder="Doe" required /></div>
+        </div>
+        <div class="field"><label>Work email</label><input type="email" placeholder="jane@maplewood.com" required /></div>
+        <div class="field">
+          <label>Your role</label>
+          <select required>
+            <option value="">Select your role…</option>
+            <option>Administrator</option>
+            <option>Director of Nursing</option>
+            <option>Billing / Finance</option>
+            <option>Owner / Executive</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field"><label>Create password</label><input type="password" placeholder="At least 8 characters" required /><div class="hint">Use 8+ characters with a mix of letters and numbers.</div></div>
+        <label class="flex items-center" style="gap:10px;font-size:14px;color:var(--ink-soft);margin:4px 0 20px;">
+          <input type="checkbox" required style="width:auto;" /> I agree to the Terms of Service and HIPAA Business Associate Agreement.
+        </label>
+        <button class="btn btn-primary btn-block btn-lg" type="submit">Create account →</button>
+      </form>
+      <p class="note center mt-3">🔒 HIPAA &amp; HITRUST certified · Your data is encrypted end-to-end</p>
+    </div>
+  </main>
+
+</div>
+</body>
+</html>

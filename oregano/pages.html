@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Oregano — Pages &amp; Styleguide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Lora:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="oregano.css" />
+<style>
+  .hub-hero { padding: 80px 0 40px; }
+  .gallery { display:grid; grid-template-columns: repeat(2,1fr); gap: 28px; padding-bottom: 90px; }
+  .gcard { display:block; text-decoration:none; color:inherit; background:#fff; border:1px solid var(--line); border-radius: var(--r-lg); overflow:hidden; box-shadow: var(--shadow-sm); transition: all .2s ease; }
+  .gcard:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .gthumb { height: 200px; display:grid; place-items:center; border-bottom: 1px solid var(--line); }
+  .gbody { padding: 24px 26px; }
+  .gbody .flex { justify-content: space-between; align-items:center; }
+  .gbody p { color: var(--ink-soft); font-size: 15px; margin: 8px 0 0; }
+  @media(max-width:780px){ .gallery{ grid-template-columns:1fr } }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap inner">
+    <a class="brand" href="pages.html"><span class="mark"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 2c1.6 2.4 1.6 4.8 0 7.2C10.4 6.8 10.4 4.4 12 2Zm0 9.6c2.4-1.6 4.8-1.6 7.2 0-2.4 1.6-4.8 1.6-7.2 0Zm0 0c-2.4-1.6-4.8-1.6-7.2 0 2.4 1.6 4.8 1.6 7.2 0Zm0 .8v9.6" stroke="#003a43" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Oregano</a>
+    <div class="nav-cta"><a class="btn btn-primary btn-sm" href="index.html">Open styleguide</a></div>
+  </div>
+</header>
+
+<section class="wrap hub-hero">
+  <span class="eyebrow">Oregano · Design system + sample pages</span>
+  <h1 class="display mt-2" style="max-width:18ch;">A healthcare UI system, demonstrated on a real product.</h1>
+  <p class="lead mt-3" style="max-width:54ch;">Every page below is built from the same Oregano components and tokens, applied to <b>eCareLTC</b>, a long-term care platform.</p>
+</section>
+
+<section class="wrap">
+  <div class="gallery">
+
+    <a class="gcard" href="ltc-landing.html">
+      <div class="gthumb" style="background: radial-gradient(120% 120% at 85% 0%, var(--sage-200), var(--cream-50));">
+        <div style="text-align:center;"><div class="badge teal dot">SNF &amp; ALF</div><div class="display" style="font-size:40px;margin-top:10px;">eCareLTC</div></div>
+      </div>
+      <div class="gbody"><div class="flex"><h4>LTC Landing page</h4><span class="link-arrow"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="#003a43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></div><p>Marketing site: hero, solutions, tool cards, 3-step process, FAQ, and CTA band.</p></div>
+    </a>
+
+    <a class="gcard" href="signup.html">
+      <div class="gthumb" style="background: var(--teal-900);">
+        <div style="text-align:center;color:#fff;"><div class="eyebrow" style="color:var(--coral-400);">Step 1 of 4</div><div style="font-size:30px;margin-top:8px;letter-spacing:-.03em;">Create your account</div></div>
+      </div>
+      <div class="gbody"><div class="flex"><h4>Sign-up</h4><span class="link-arrow"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="#003a43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></div><p>Split layout with benefits panel, social sign-up, and a validated registration form.</p></div>
+    </a>
+
+    <a class="gcard" href="onboarding.html">
+      <div class="gthumb" style="background: var(--cream-100);">
+        <div class="stepper" style="transform:scale(.9);"><div class="node done"><span class="dot">✓</span></div><div class="bar done"></div><div class="node active"><span class="dot">2</span></div><div class="bar"></div><div class="node"><span class="dot">3</span></div><div class="bar"></div><div class="node"><span class="dot">4</span></div></div>
+      </div>
+      <div class="gbody"><div class="flex"><h4>Onboarding flow</h4><span class="badge coral">Interactive</span></div><p>4-step wizard: facility type → building → invite team → payers → success. Clickable.</p></div>
+    </a>
+
+    <a class="gcard" href="index.html">
+      <div class="gthumb" style="background: linear-gradient(135deg,var(--coral-500),var(--coral-400));">
+        <div style="text-align:center;color:var(--teal-900);"><div class="eyebrow">Foundations</div><div style="font-size:34px;margin-top:6px;letter-spacing:-.03em;">H1–H6 · Tokens · Components</div></div>
+      </div>
+      <div class="gbody"><div class="flex"><h4>Styleguide</h4><span class="badge solid">Validated</span></div><p>Color, typography, buttons, cards, forms, and the full validation report.</p></div>
+    </a>
+
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap botbar" style="border:none;">
+    <span>© 2026 · Oregano design system · sample product: eCareLTC</span>
+    <span>Healthcare UI design system</span>
+  </div>
+</footer>
+
+</body>
+</html>

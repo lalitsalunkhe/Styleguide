@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>eCareLTC — Set up your facility</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Lora:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="oregano.css" />
+<style>
+  body { background: var(--cream-50); }
+  .ob-top { background:#fff; border-bottom:1px solid var(--line); }
+  .ob-top .inner { display:flex; align-items:center; gap:24px; height:72px; }
+  .ob-top .stepper { margin: 0 auto; }
+  .ob-wrap { max-width: 720px; margin: 0 auto; padding: 56px 24px 80px; }
+  .ostep { display: none; }
+  .ostep.show { display: block; animation: fade .25s ease; }
+  @keyframes fade { from { opacity:0; transform: translateY(6px) } to { opacity:1; transform:none } }
+  .opt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .nav-row { display:flex; justify-content:space-between; align-items:center; margin-top: 40px; }
+  .invite-row { display:grid; grid-template-columns: 1fr 200px 40px; gap:12px; align-items:center; margin-bottom:12px; }
+  .invite-row .x { color: var(--ink-mute); cursor:pointer; text-align:center; font-size:20px; }
+  .success { text-align:center; padding: 24px 0; }
+  .success .ring { width:96px; height:96px; border-radius:50%; background: #e3f1e6; display:grid; place-items:center; margin: 0 auto 24px; }
+  .skip { color: var(--ink-mute); text-decoration:none; font-size:15px; }
+  @media(max-width:620px){ .opt-grid{grid-template-columns:1fr} .invite-row{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR + STEPPER -->
+<header class="ob-top">
+  <div class="wrap inner">
+    <a class="brand" href="pages.html"><span class="mark"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2c1.6 2.4 1.6 4.8 0 7.2C10.4 6.8 10.4 4.4 12 2Zm0 9.6c2.4-1.6 4.8-1.6 7.2 0-2.4 1.6-4.8 1.6-7.2 0Zm0 0c-2.4-1.6-4.8-1.6-7.2 0 2.4 1.6 4.8 1.6 7.2 0Zm0 .8v9.6" stroke="#003a43" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>eCareLTC</a>
+    <div class="stepper" id="stepper">
+      <div class="node active" data-i="0"><span class="dot">1</span><span class="txt">Facility</span></div>
+      <div class="bar"></div>
+      <div class="node" data-i="1"><span class="dot">2</span><span class="txt">Building</span></div>
+      <div class="bar"></div>
+      <div class="node" data-i="2"><span class="dot">3</span><span class="txt">Team</span></div>
+      <div class="bar"></div>
+      <div class="node" data-i="3"><span class="dot">4</span><span class="txt">Billing</span></div>
+    </div>
+    <a class="skip" href="pages.html">Save &amp; exit</a>
+  </div>
+</header>
+
+<div class="ob-wrap">
+
+  <!-- STEP 1 — FACILITY TYPE -->
+  <section class="ostep show" data-step="0">
+    <span class="eyebrow">Step 1 of 4</span>
+    <h2 class="mt-2">What kind of facility are you setting up?</h2>
+    <p class="lead mt-1">This tailors the charting, assessments, and compliance rules to your care setting.</p>
+    <div class="opt-grid mt-4">
+      <div class="opt sel" onclick="pick(this)"><span class="oico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 21V8l9-5 9 5v13" stroke="#003a43" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke="#ff8d6e" stroke-width="1.6"/></svg></span><div><h5>Skilled Nursing (SNF)</h5><p>24/7 skilled care, MDS, Medicare Part A.</p></div></div>
+      <div class="opt" onclick="pick(this)"><span class="oico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="#003a43" stroke-width="1.6"/><path d="M5 20c0-3.3 3-6 7-6s7 2.7 7 6" stroke="#003a43" stroke-width="1.6"/></svg></span><div><h5>Assisted Living (ALF)</h5><p>Support with daily living and medications.</p></div></div>
+      <div class="opt" onclick="pick(this)"><span class="oico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z" stroke="#003a43" stroke-width="1.6" stroke-linejoin="round"/></svg></span><div><h5>Memory Care</h5><p>Specialized dementia &amp; Alzheimer's care.</p></div></div>
+      <div class="opt" onclick="pick(this)"><span class="oico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="#003a43" stroke-width="1.6"/><path d="M8 9h8M8 13h5" stroke="#003a43" stroke-width="1.6" stroke-linecap="round"/></svg></span><div><h5>Group Home</h5><p>Smaller residential care settings.</p></div></div>
+    </div>
+    <div class="field mt-4"><label>Facility name</label><input value="Maplewood Care Center" /></div>
+    <div class="nav-row">
+      <span></span>
+      <button class="btn btn-primary btn-lg" onclick="go(1)">Continue →</button>
+    </div>
+  </section>
+
+  <!-- STEP 2 — BUILDING -->
+  <section class="ostep" data-step="1">
+    <span class="eyebrow">Step 2 of 4</span>
+    <h2 class="mt-2">Set up your building</h2>
+    <p class="lead mt-1">Add units and bed counts. You can fine-tune room numbers later.</p>
+    <div class="card mt-4">
+      <div class="field-row">
+        <div class="field"><label>Number of units / wings</label><input type="number" value="3" /></div>
+        <div class="field"><label>Total licensed beds</label><input type="number" value="120" /></div>
+      </div>
+      <div class="field"><label>Unit naming</label>
+        <select><option>Named (e.g. North, South, Memory Care)</option><option>Numbered (Unit 1, Unit 2…)</option></select>
+      </div>
+      <label class="flex items-center" style="gap:10px;font-size:15px;color:var(--ink-soft);">
+        <input type="checkbox" checked style="width:auto;" /> Auto-generate rooms for each unit
+      </label>
+    </div>
+    <div class="card-soft mt-3 flex items-center gap-2" style="justify-content:space-between;">
+      <div><h5>Import from a spreadsheet</h5><p class="muted mb-0" style="font-size:14px;">Already have your roster? Upload a CSV and we'll map it for you.</p></div>
+      <a class="btn btn-ghost btn-sm">Upload CSV</a>
+    </div>
+    <div class="nav-row">
+      <button class="btn btn-ghost" onclick="go(0)">← Back</button>
+      <button class="btn btn-primary btn-lg" onclick="go(2)">Continue →</button>
+    </div>
+  </section>
+
+  <!-- STEP 3 — TEAM -->
+  <section class="ostep" data-step="2">
+    <span class="eyebrow">Step 3 of 4</span>
+    <h2 class="mt-2">Invite your care team</h2>
+    <p class="lead mt-1">Send invites now or skip and add staff later from settings.</p>
+    <div class="card mt-4">
+      <div id="invites">
+        <div class="invite-row">
+          <input placeholder="name@facility.com" value="don@maplewood.com" />
+          <select><option>Director of Nursing</option><option>Administrator</option><option>Nurse (RN/LPN)</option><option>CNA</option><option>Billing</option></select>
+          <span class="x" onclick="this.parentElement.remove()">×</span>
+        </div>
+        <div class="invite-row">
+          <input placeholder="name@facility.com" />
+          <select><option>Nurse (RN/LPN)</option><option>Director of Nursing</option><option>Administrator</option><option>CNA</option><option>Billing</option></select>
+          <span class="x" onclick="this.parentElement.remove()">×</span>
+        </div>
+      </div>
+      <a class="link-arrow" style="cursor:pointer;font-size:15px;" onclick="addInvite()">+ Add another teammate</a>
+    </div>
+    <div class="nav-row">
+      <button class="btn btn-ghost" onclick="go(1)">← Back</button>
+      <div class="flex items-center gap-2">
+        <a class="skip" onclick="go(3)" style="cursor:pointer;">Skip for now</a>
+        <button class="btn btn-primary btn-lg" onclick="go(3)">Send invites →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 4 — BILLING -->
+  <section class="ostep" data-step="3">
+    <span class="eyebrow">Step 4 of 4</span>
+    <h2 class="mt-2">Which payers do you bill?</h2>
+    <p class="lead mt-1">We'll switch on the right claim formats and census tracking for each.</p>
+    <div class="opt-grid mt-4">
+      <div class="opt sel" onclick="pick(this,true)"><span class="oico">🏛️</span><div><h5>Medicare</h5><p>Part A &amp; B claims</p></div></div>
+      <div class="opt sel" onclick="pick(this,true)"><span class="oico">🩺</span><div><h5>Medicaid</h5><p>State LTC programs</p></div></div>
+      <div class="opt" onclick="pick(this,true)"><span class="oico">🏥</span><div><h5>Managed Care</h5><p>MCO / Medicare Advantage</p></div></div>
+      <div class="opt sel" onclick="pick(this,true)"><span class="oico">💳</span><div><h5>Private Pay</h5><p>Resident &amp; family billing</p></div></div>
+    </div>
+    <div class="nav-row">
+      <button class="btn btn-ghost" onclick="go(2)">← Back</button>
+      <button class="btn btn-primary btn-lg" onclick="finish()">Finish setup →</button>
+    </div>
+  </section>
+
+  <!-- DONE -->
+  <section class="ostep" data-step="4">
+    <div class="success">
+      <div class="ring"><svg width="44" height="44" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L19 7" stroke="#1f7a3f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h2>You're all set, Maplewood Care Center! 🎉</h2>
+      <p class="lead mt-2" style="max-width:46ch;margin-inline:auto;">Your facility is configured. Your onboarding manager will reach out within one business day to schedule data migration and training.</p>
+      <div class="grid grid-3 mt-5" style="text-align:left;">
+        <div class="card"><div class="note">NEXT</div><h5 class="mt-1">Explore the dashboard</h5><p class="muted mb-0" style="font-size:14px;">See your census, tasks, and alerts at a glance.</p></div>
+        <div class="card"><div class="note">NEXT</div><h5 class="mt-1">Set up eMAR</h5><p class="muted mb-0" style="font-size:14px;">Import medication orders and schedules.</p></div>
+        <div class="card"><div class="note">NEXT</div><h5 class="mt-1">Invite the rest of your team</h5><p class="muted mb-0" style="font-size:14px;">Add nurses and CNAs from settings.</p></div>
+      </div>
+      <div class="btn-group mt-5" style="justify-content:center;">
+        <a class="btn btn-primary btn-lg" href="pages.html">Go to dashboard</a>
+        <a class="btn btn-secondary btn-lg" href="ltc-landing.html">Back to site</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  let cur = 0;
+  const labels = document.querySelectorAll('#stepper .node');
+  const bars = document.querySelectorAll('#stepper .bar');
+  function render() {
+    document.querySelectorAll('.ostep').forEach(s => s.classList.toggle('show', +s.dataset.step === cur));
+    labels.forEach((n,i) => {
+      n.classList.toggle('done', i < cur);
+      n.classList.toggle('active', i === cur);
+      n.querySelector('.dot').innerHTML = i < cur ? '✓' : (i+1);
+    });
+    bars.forEach((b,i) => b.classList.toggle('done', i < cur));
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  function go(i){ cur = i; render(); }
+  function finish(){ cur = 4; document.querySelectorAll('.ostep').forEach(s => s.classList.toggle('show', +s.dataset.step === 4)); labels.forEach(n=>{n.classList.add('done');n.classList.remove('active');n.querySelector('.dot').innerHTML='✓'}); bars.forEach(b=>b.classList.add('done')); window.scrollTo({top:0,behavior:'smooth'}); }
+  function pick(el, multi){
+    if(!multi){ el.parentElement.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel')); }
+    el.classList.toggle('sel');
+  }
+  function addInvite(){
+    const row = document.createElement('div');
+    row.className = 'invite-row';
+    row.innerHTML = '<input placeholder="name@facility.com" /><select><option>Nurse (RN/LPN)</option><option>CNA</option><option>Administrator</option><option>Billing</option></select><span class="x" onclick="this.parentElement.remove()">×</span>';
+    document.getElementById('invites').appendChild(row);
+  }
+</script>
+</body>
+</html>

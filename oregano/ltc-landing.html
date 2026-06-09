@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>eCareLTC — Long-Term Care Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Lora:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="oregano.css" />
+<style>
+  .hero { background: radial-gradient(130% 120% at 88% -10%, var(--sage-200) 0%, rgba(220,230,225,0) 48%), var(--cream-50); padding: 80px 0 90px; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 64px; align-items: center; }
+  .hero h1 { max-width: 16ch; }
+  .resident-card { position: relative; background: #fff; border-radius: var(--r-lg); box-shadow: var(--shadow-lg); padding: 28px; }
+  .float { position: absolute; background: #fff; border-radius: 12px; box-shadow: var(--shadow-md); padding: 12px 16px; font-size: 13px; }
+  .trust-bar { background: var(--teal-900); color: var(--on-dark); padding: 22px 0; text-align: center; }
+  .sol-img { height: 150px; margin: 18px -30px -34px; border-radius: 0 0 var(--r-lg) var(--r-lg); background: repeating-linear-gradient(135deg,#e7e1d7 0 12px,#ece7de 12px 24px); display:grid; place-items:center; color: var(--ink-mute); font-family: var(--font-mono); font-size: 12px; border-top: 1px solid var(--line); }
+  .sol-card { background: linear-gradient(180deg,#f6f3ee,#efeae2); border-radius: var(--r-lg); padding: 32px 30px; overflow: hidden; }
+  .sol-card .row { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+  .cta-band { background: var(--teal-900); border-radius: var(--r-xl); padding: 64px; text-align: center; color: #fff; }
+  @media(max-width:940px){ .hero-grid{ grid-template-columns:1fr; gap:40px } .cta-band{ padding:40px 24px } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav">
+  <div class="wrap inner">
+    <a class="brand" href="pages.html">
+      <span class="mark"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 2c1.6 2.4 1.6 4.8 0 7.2C10.4 6.8 10.4 4.4 12 2Zm0 9.6c2.4-1.6 4.8-1.6 7.2 0-2.4 1.6-4.8 1.6-7.2 0Zm0 0c-2.4-1.6-4.8-1.6-7.2 0 2.4 1.6 4.8 1.6 7.2 0Zm0 .8v9.6" stroke="#003a43" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      eCareLTC
+    </a>
+    <nav class="nav-links">
+      <a href="#solutions">Platform</a>
+      <a href="#tools">Tools</a>
+      <a href="#steps">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <span class="nav-phone"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 4h3l2 5-2 1.5a11 11 0 0 0 5 5L19 13l2 5v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke="#3a6d71" stroke-width="1.6" stroke-linejoin="round"/></svg>(866) 938-3272</span>
+      <a class="btn btn-ghost btn-sm" href="signup.html">Sign in</a>
+      <a class="btn btn-primary btn-sm" href="signup.html">Get a demo</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge teal dot mb-2">Built for skilled nursing &amp; assisted living</span>
+      <h1>The all-in-one platform for long-term care</h1>
+      <p class="lead mt-2" style="max-width:46ch;">eMAR, clinical charting, census, and billing — connected in one place so your team spends less time on paperwork and more time with residents.</p>
+      <div class="btn-group mt-4">
+        <a class="btn btn-primary btn-lg" href="signup.html">Start free trial</a>
+        <a class="btn btn-secondary btn-lg" href="#steps">See how it works</a>
+      </div>
+      <div class="flex items-center gap-2 mt-4">
+        <span class="stars">★★★★★</span>
+        <span style="font-weight:700;">4.8</span>
+        <span class="muted" style="font-size:15px;">Average rating from 2,400+ care teams</span>
+      </div>
+    </div>
+
+    <div class="resident-card">
+      <div class="flex items-center gap-2" style="justify-content:space-between;">
+        <div>
+          <div class="note">RESIDENT</div>
+          <h4 style="margin-top:4px;">Eleanor Whitfield · Rm 214</h4>
+        </div>
+        <span class="badge coral">Stable</span>
+      </div>
+      <div class="grid grid-3 mt-3" style="gap:12px;">
+        <div class="card" style="padding:16px;"><div class="note">BP</div><div style="font-size:22px;color:var(--teal-900);">128/76</div></div>
+        <div class="card" style="padding:16px;"><div class="note">HR</div><div style="font-size:22px;color:var(--teal-900);">72</div></div>
+        <div class="card" style="padding:16px;"><div class="note">SpO₂</div><div style="font-size:22px;color:var(--teal-900);">97%</div></div>
+      </div>
+      <div class="card mt-3" style="padding:16px 18px;">
+        <div class="flex items-center" style="justify-content:space-between;">
+          <span style="font-weight:600;">9:00 AM · Metformin 500mg</span>
+          <span class="badge teal" style="background:#e3f1e6;color:#1f7a3f;">✓ Given</span>
+        </div>
+      </div>
+      <div class="float" style="left:-22px; bottom:-18px;">📋 <b>3 tasks</b> due this shift</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust-bar">
+  <div class="wrap">Trusted by 1,200+ long-term care facilities to manage 90,000+ residents — HIPAA &amp; HITRUST certified.</div>
+</div>
+
+<!-- STATS -->
+<section class="section-sm">
+  <div class="wrap grid grid-4">
+    <div class="stat"><div class="big">42%</div><div class="lbl">less time charting</div></div>
+    <div class="stat"><div class="big">99.2%</div><div class="lbl">eMAR pass rate</div></div>
+    <div class="stat"><div class="big">12 days</div><div class="lbl">average go-live</div></div>
+    <div class="stat"><div class="big">$1.4M</div><div class="lbl">avg. recovered revenue</div></div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section class="section" id="solutions">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">All-in-one platform</span>
+      <h2>Software solutions powering your facility</h2>
+      <p>One platform. Every workflow. Built for long-term &amp; post-acute care.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="sol-card">
+        <div class="row"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="2" stroke="#003a43" stroke-width="1.6"/><path d="M9 8h6M9 12h6M9 16h4" stroke="#003a43" stroke-width="1.6" stroke-linecap="round"/><circle cx="17" cy="6" r="2" fill="#ff8d6e"/></svg><h4>eMAR &amp; Clinical</h4></div>
+        <p class="muted" style="font-size:15px;">Electronic medication administration, assessments, and care plans that keep charting accurate and survey-ready.</p>
+        <div class="sol-img">eMAR screen</div>
+      </article>
+      <article class="sol-card">
+        <div class="row"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#003a43" stroke-width="1.6"/><path d="M5 20c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="#003a43" stroke-width="1.6"/><circle cx="12" cy="8" r="1.8" fill="#ff8d6e"/></svg><h4>Resident &amp; Family</h4></div>
+        <p class="muted" style="font-size:15px;">A secure portal for families to follow care, message staff, and stay informed — fully integrated with the chart.</p>
+        <div class="sol-img">Family portal</div>
+      </article>
+      <article class="sol-card">
+        <div class="row"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 20V10M10 20V5M16 20v-8M22 20H2" stroke="#003a43" stroke-width="1.6" stroke-linecap="round"/><circle cx="16" cy="9" r="2" fill="#ff8d6e"/></svg><h4>Billing &amp; Census</h4></div>
+        <p class="muted" style="font-size:15px;">Track census, automate Medicaid/Medicare claims, and shorten days-revenue-outstanding with built-in billing.</p>
+        <div class="sol-img">Census dashboard</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS (3 surface variants) -->
+<section class="section bg-cream" id="tools">
+  <div class="wrap">
+    <div class="section-head"><h2>Practice management tools</h2></div>
+    <div class="grid grid-3">
+      <article class="tool-card light">
+        <h3>Census calculator</h3>
+        <p>Estimate the occupancy and payer mix that maximizes your facility's monthly revenue.</p>
+        <a class="link-arrow" href="signup.html">Try the calculator <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="#003a43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </article>
+      <article class="tool-card coral">
+        <h3>Reimbursement estimator</h3>
+        <p>Find out how much revenue you might be missing — and how better billing improves collections.</p>
+        <a class="link-arrow" href="signup.html">Run the numbers <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="#003a43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </article>
+      <article class="tool-card dark">
+        <h3>Compliance scanner</h3>
+        <p>See how survey-ready your facility is. Spot gaps in documentation before the state does.</p>
+        <a class="link-arrow" href="signup.html">Run my scan <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="section" id="steps">
+  <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
+    <div>
+      <span class="eyebrow">Step-by-step process</span>
+      <h2 class="mt-2">Get started with eCareLTC in 3 easy steps</h2>
+      <p class="lead mt-2">Simple, supported, and designed to fit the way your facility works. From setup to go-live, we guide you every step.</p>
+      <div class="btn-group mt-4">
+        <a class="btn btn-primary" href="signup.html">Get started today</a>
+        <a class="btn btn-secondary" href="#solutions">See how it works</a>
+      </div>
+    </div>
+    <div class="steps-card">
+      <div class="step"><div class="num">1</div><div><h5>Set up your facility</h5><p>Add your building, units, and rooms in minutes with a guided setup wizard.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h5>Migrate residents &amp; staff</h5><p>Your onboarding manager imports resident records and invites your care team.</p></div></div>
+      <div class="step"><div class="num">3</div><div><h5>Go live with confidence</h5><p>Launch eMAR, charting, and billing with white-glove training so you're ready in days.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section bg-cream" id="faq">
+  <div class="wrap-narrow">
+    <div class="section-head center"><span class="eyebrow">FAQs</span><h2 style="font-size:46px;">Frequently asked questions</h2></div>
+    <div>
+      <details class="faq-item" open><summary>Is eCareLTC HIPAA-compliant? <span class="sign">−</span></summary><div class="answer">Yes. Every product — eMAR, clinical charting, and billing — is built with HIPAA and HITRUST compliance at the core. Resident data is encrypted at rest and in transit.</div></details>
+      <details class="faq-item"><summary>Does it support both skilled nursing and assisted living? <span class="sign">+</span></summary><div class="answer">Yes. eCareLTC is built for the full post-acute continuum: SNF, ALF, memory care, and group homes.</div></details>
+      <details class="faq-item"><summary>How long does implementation take? <span class="sign">+</span></summary><div class="answer">Most facilities go live in under two weeks with a dedicated onboarding manager handling data migration and staff training.</div></details>
+      <details class="faq-item"><summary>Can it handle Medicaid and Medicare billing? <span class="sign">+</span></summary><div class="answer">Yes — claims for Medicaid, Medicare, and private pay are automated, with census and payer-mix tracking built in.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2 style="color:#fff;font-size:40px;max-width:20ch;margin:0 auto;">Ready to give your care team time back?</h2>
+      <p style="max-width:48ch;margin:18px auto 0;">Join 1,200+ facilities running on eCareLTC. Schedule a customized demo — no strings attached.</p>
+      <div class="btn-group mt-4" style="justify-content:center;">
+        <a class="btn btn-primary btn-lg" href="signup.html">Start free trial</a>
+        <a class="btn btn-ondark btn-lg" href="signup.html">Get a demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="pages.html"><span class="mark"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2c1.6 2.4 1.6 4.8 0 7.2C10.4 6.8 10.4 4.4 12 2Zm0 9.6c2.4-1.6 4.8-1.6 7.2 0-2.4 1.6-4.8 1.6-7.2 0Zm0 0c-2.4-1.6-4.8-1.6-7.2 0 2.4 1.6 4.8 1.6 7.2 0Zm0 .8v9.6" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>eCareLTC</a>
+        <p style="margin-top:16px;max-width:34ch;">The connected operating system for long-term &amp; post-acute care.</p>
+      </div>
+      <div><h6>Platform</h6><div class="lnks"><a href="#">eMAR &amp; Clinical</a><a href="#">Resident &amp; Family</a><a href="#">Billing &amp; Census</a><a href="#">Compliance</a></div></div>
+      <div><h6>Company</h6><div class="lnks"><a href="#">About</a><a href="#">Careers</a><a href="#">Newsroom</a><a href="#">Contact</a></div></div>
+      <div><h6>Resources</h6><div class="lnks"><a href="#">Help Center</a><a href="signup.html">Get a demo</a><a href="#">Case studies</a><a href="#">Security</a></div></div>
+    </div>
+    <div class="botbar"><span>© 2026 eCareLTC · Designed with the Oregano design system</span><span>Terms · Privacy · HIPAA</span></div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Oregano — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- Brand fonts are Akkurat LL + Akkurat Mono LL (licensed, lineto.com). Free stand-ins below: Inter ≈ Akkurat, Space Mono ≈ Akkurat Mono, Lora is the real accent serif. -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   Oregano — healthcare UI design system
+   ============================================================ */
+:root {
+  /* ---- Brand colors ---- */
+  --teal-900: #003a43;   /* PRIMARY teal — headings, dark sections (136× in CSS) */
+  --teal-800: #004952;   /* alt dark surface / footer (100×) */
+  --teal-700: #3a6d71;   /* mid teal — muted text */
+  --teal-600: #82a4a7;   /* muted teal-grey — captions */
+
+  --coral-500: #ff8d6e;  /* primary action (33×) */
+  --coral-600: #f37e5e;  /* hover (darker coral) */
+  --coral-400: #fec3b8;  /* tint */
+  --coral-100: #fee3df;  /* lightest tint surface */
+  --coral-50:  #fff6f3;
+
+  /* ---- Neutrals / surfaces ---- */
+  --cream-50:  #f8f3eb;  /* page base (100×) */
+  --cream-100: #f9f7f6;  /* off-white */
+  --cream-200: #f2eee9;  /* warm alt */
+  --sand-100:  #e0d3c8;  /* warm taupe accent */
+  --sand-200:  #d8d5cf;
+
+  --sage-100:  #ebf0ef;  /* light teal-grey surface (49×) */
+  --sage-200:  #edf1f0;  /* pale sage */
+  --sage-active: #ebf0f1; /* faq active */
+
+  --white: #ffffff;
+
+  /* ---- Text ---- */
+  --ink:      #003a43;   /* primary headings = teal-900 */
+  --ink-body: #232323;   /* near-black body copy (33×) */
+  --ink-soft: #3a6d71;   /* muted teal body */
+  --ink-mute: #82a4a7;   /* captions */
+  --on-dark:  #f8f3eb;   /* text on teal */
+  --on-dark-soft: #c5d6d7;
+
+  /* ---- Lines ---- */
+  --line:        #d2dcda;
+  --line-strong: #c5d6d7;
+  --line-coral:  #fec3b8;
+
+  /* ---- Type ---- */
+  /* Brand: Akkurat LL / Akkurat Mono LL (licensed). Inter/Space Mono = free stand-ins. */
+  --font-sans: "Akkurat LL", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Akkurat Mono LL", "Space Mono", ui-monospace, monospace;
+  --font-serif: "Lora", Georgia, serif;
+
+  /* type scale — px values */
+  --t-display: 72px;   /* weight 300 */
+  --t-h1: 68px;        /* weight 400 */
+  --t-h2: 48px;
+  --t-h3: 36px;
+  --t-h4: 24px;
+  --t-h5: 22px;
+  --t-h6: 18px;
+  --t-body-lg: 20px;
+  --t-body: 18px;      /* most common size (105×) */
+  --t-small: 16px;
+  --t-caption: 14px;
+  --t-eyebrow: 12px;
+
+  /* radius — verified: 16px & 24px dominate cards; 60–100px = pills */
+  --r-sm: 8px;
+  --r-md: 16px;   /* primary card radius (40× in CSS) */
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-pill: 100px;
+
+  /* spacing */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px; --sp-9: 96px;
+
+  /* shadow */
+  --shadow-sm: 0 1px 2px rgba(20,58,58,.06), 0 1px 3px rgba(20,58,58,.05);
+  --shadow-md: 0 8px 24px rgba(20,58,58,.08);
+  --shadow-lg: 0 20px 48px rgba(20,58,58,.12);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--t-body);
+  line-height: 1.5;
+  color: var(--ink-body);
+  background: var(--cream-50);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Headings: LIGHT (300) display + REGULAR (400), tight negative tracking ---- */
+h1,h2,h3,h4,h5,h6 { margin: 0; color: var(--ink); font-weight: 400; letter-spacing: -.04em; line-height: 1.2; }
+h1 { font-size: var(--t-h1); }
+h2 { font-size: var(--t-h2); }
+h3 { font-size: var(--t-h3); }
+h4 { font-size: var(--t-h4); letter-spacing: -.02em; }
+h5 { font-size: var(--t-h5); letter-spacing: -.02em; }
+h6 { font-size: var(--t-h6); letter-spacing: 0; line-height: 1.4; }
+
+p { margin: 0 0 1em; color: var(--ink-body); line-height: 1.5; }
+a { color: var(--ink); }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--t-eyebrow);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+
+/* ============================================================
+   LAYOUT CHROME OF THE STYLEGUIDE
+   ============================================================ */
+.sg-top {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(250,247,241,.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.sg-top .wrap { display: flex; align-items: center; gap: var(--sp-5); height: 64px; }
+.brandmark { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 22px; color: var(--teal-800); }
+.brandmark .leaf {
+  width: 26px; height: 26px; display: grid; place-items: center;
+}
+.sg-nav { display: flex; gap: 4px; margin-left: auto; flex-wrap: wrap; }
+.sg-nav a {
+  text-decoration: none; font-size: 14px; color: var(--ink-soft);
+  padding: 6px 12px; border-radius: var(--r-pill); font-weight: 500;
+}
+.sg-nav a:hover { background: var(--sage-100); color: var(--ink); }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+section.block { padding: var(--sp-9) 0; border-bottom: 1px solid var(--line); }
+.block-head { max-width: 640px; margin-bottom: var(--sp-7); }
+.block-head .eyebrow { display: block; margin-bottom: 14px; }
+.block-head p { font-size: var(--t-body-lg); color: var(--ink-soft); margin: 12px 0 0; }
+
+.hero {
+  padding: var(--sp-9) 0 var(--sp-8);
+  background:
+    radial-gradient(140% 120% at 85% -10%, var(--sage-200) 0%, rgba(220,230,225,0) 45%),
+    var(--cream-50);
+}
+.hero h1 { font-size: var(--t-display); font-weight: 300; max-width: 14ch; }
+.hero p { font-size: var(--t-body-lg); max-width: 52ch; margin-top: 20px; }
+.hero .chips { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+.chip {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em;
+  background: var(--white); border: 1px solid var(--line);
+  padding: 7px 14px; border-radius: var(--r-pill); color: var(--ink-soft);
+}
+
+/* ============================================================
+   SWATCHES
+   ============================================================ */
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px,1fr)); gap: 16px; }
+.swatch { border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; background: var(--white); box-shadow: var(--shadow-sm); }
+.swatch .chip-color { height: 96px; }
+.swatch .meta { padding: 12px 14px; }
+.swatch .meta .name { font-weight: 600; font-size: 14px; }
+.swatch .meta .hex { font-family: var(--font-mono); font-size: 12px; color: var(--ink-mute); margin-top: 2px; }
+
+/* ============================================================
+   TYPE SPECIMENS
+   ============================================================ */
+.type-row { display: grid; grid-template-columns: 130px 1fr; gap: 24px; align-items: baseline; padding: 18px 0; border-bottom: 1px dashed var(--line); }
+.type-row .tag { font-family: var(--font-mono); font-size: 12px; color: var(--ink-mute); }
+.type-row .tag b { display: block; color: var(--ink); font-size: 13px; }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+  font-family: var(--font-sans); font-size: 16px; font-weight: 500;
+  padding: 14px 28px; border-radius: var(--r-pill); border: 1.5px solid transparent;
+  text-decoration: none; transition: all .18s ease; line-height: 1;
+}
+.btn-primary { background: var(--coral-500); color: var(--teal-900); }
+.btn-primary:hover { background: var(--coral-600); transform: translateY(-1px); }
+.btn-secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn-secondary:hover { background: var(--ink); color: var(--on-dark); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.btn-ghost:hover { border-color: var(--ink); }
+.btn-dark { background: var(--teal-800); color: var(--on-dark); }
+.btn-dark:hover { background: var(--teal-900); }
+.btn-sm { padding: 9px 18px; font-size: 14px; }
+.btn-lg { padding: 17px 34px; font-size: 18px; }
+
+.link-arrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 600; text-decoration: none; color: var(--ink);
+}
+.link-arrow .ico { width: 20px; height: 20px; display: grid; place-items: center; transition: transform .18s ease; }
+.link-arrow:hover .ico { transform: translate(2px,-2px); }
+
+.btn-group { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+
+/* ============================================================
+   TOOL CARDS (3 variants)
+   ============================================================ */
+.tool-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.tool-card {
+  border-radius: var(--r-lg); padding: 36px 32px; min-height: 320px;
+  display: flex; flex-direction: column; position: relative; overflow: hidden;
+}
+.tool-card h3 { font-size: 36px; font-weight: 400; letter-spacing: -.04em; }
+.tool-card p { margin: 18px 0 0; }
+.tool-card .link-arrow { margin-top: auto; padding-top: 28px; }
+.tool-card .glyph { position: absolute; right: 24px; bottom: 22px; opacity: .9; }
+
+.tool-card.light { background: linear-gradient(160deg,#fdfcfa,#f4f0ea); border: 1px solid var(--line); }
+.tool-card.coral { background: var(--coral-500); }
+.tool-card.coral h3, .tool-card.coral .link-arrow { color: var(--teal-900); }
+.tool-card.coral p { color: #5e2f23; }
+.tool-card.dark  { background: var(--teal-800); }
+.tool-card.dark h3 { color: var(--white); }
+.tool-card.dark p  { color: var(--on-dark-soft); }
+.tool-card.dark .link-arrow { color: var(--white); }
+
+/* ============================================================
+   STEP PROCESS
+   ============================================================ */
+.steps-card {
+  background: linear-gradient(180deg,#f3f0ea,#f8f5f0);
+  border: 1px solid var(--line); border-radius: var(--r-xl);
+  padding: 40px 44px; max-width: 560px;
+}
+.step { display: grid; grid-template-columns: 56px 1fr; gap: 22px; padding-bottom: 30px; position: relative; }
+.step:last-child { padding-bottom: 0; }
+.step:not(:last-child)::after {
+  content: ""; position: absolute; left: 27px; top: 46px; bottom: 6px;
+  width: 1.5px; background: linear-gradient(var(--coral-400), var(--line));
+}
+.step .num { font-size: 40px; font-weight: 700; color: var(--teal-800); line-height: 1; }
+.step h5 { margin-bottom: 8px; }
+.step p { margin: 0; font-size: var(--t-small); }
+
+/* ============================================================
+   FEATURE ICON CARDS
+   ============================================================ */
+.feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 40px 32px; }
+.feat { text-align: left; }
+.feat .iconwrap {
+  width: 68px; height: 68px; border-radius: var(--r-pill);
+  background: var(--white); box-shadow: var(--shadow-sm);
+  display: grid; place-items: center; margin-bottom: 18px; border: 1px solid var(--line);
+}
+.feat h5 { margin-bottom: 8px; }
+.feat p { font-size: var(--t-small); margin: 0; }
+
+/* ============================================================
+   SOLUTION CARDS (image + title)
+   ============================================================ */
+.sol-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.sol-card { background: linear-gradient(180deg,#f6f3ee,#efeae2); border-radius: var(--r-lg); padding: 36px 32px 0; overflow: hidden; }
+.sol-card .row { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.sol-card h4 { font-weight: 400; }
+.sol-card p { font-size: var(--t-small); }
+.sol-card .ph {
+  height: 150px; margin: 14px -32px 0; background:
+    repeating-linear-gradient(135deg,#e7e1d7 0 12px,#ece7de 12px 24px);
+  border-top: 1px solid var(--line);
+  display: grid; place-items: center; color: var(--ink-mute); font-size: 13px; font-family: var(--font-mono);
+}
+
+/* ============================================================
+   FAQ ACCORDION
+   ============================================================ */
+.faq { max-width: 820px; }
+details.faq-item { border-bottom: 1px solid var(--line); }
+details.faq-item[open] { background: var(--sage-active); border-radius: var(--r-md); border-bottom-color: transparent; margin: 4px 0; }
+.faq-item summary {
+  list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; padding: 24px 22px; font-size: 22px; font-weight: 400; letter-spacing: -.02em; color: var(--ink);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item .sign { color: var(--coral-500); font-size: 26px; line-height: 1; transition: transform .2s ease; }
+.faq-item[open] .sign { color: var(--ink); }
+.faq-item .answer { padding: 0 22px 26px; color: var(--ink-soft); max-width: 70ch; }
+
+/* ============================================================
+   FORM
+   ============================================================ */
+.form-card { background: var(--white); border-radius: var(--r-lg); padding: 40px 36px; box-shadow: var(--shadow-lg); max-width: 460px; }
+.form-card h4 { font-weight: 400; font-size: 26px; }
+.form-card .sub { color: var(--ink-soft); font-size: var(--t-small); margin: 10px 0 26px; }
+.field { margin-bottom: 16px; }
+.field input, .field select {
+  width: 100%; padding: 16px 18px; font-family: var(--font-sans); font-size: 16px;
+  border: 1.5px solid var(--line-strong); border-radius: var(--r-md); background: var(--white);
+  color: var(--ink); transition: border-color .15s ease;
+}
+.field input::placeholder { color: var(--ink-mute); }
+.field input:focus, .field select:focus { outline: none; border-color: var(--teal-700); }
+.form-card .btn-primary { width: 100%; justify-content: center; margin-top: 8px; }
+
+/* ============================================================
+   MISC: checklist, rating, nav bar demo
+   ============================================================ */
+.checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
+.checklist li { display: flex; gap: 14px; align-items: flex-start; font-size: var(--t-body-lg); color: var(--ink); }
+.checklist .tick { color: var(--teal-800); flex: none; margin-top: 3px; }
+
+.rating { display: flex; align-items: center; gap: 12px; }
+.stars { color: #e0a73c; letter-spacing: 2px; font-size: 22px; }
+.rating .score { font-weight: 700; font-size: 20px; }
+.rating .label { color: var(--ink-mute); }
+
+.navbar-demo {
+  display: flex; align-items: center; gap: 20px; background: var(--white);
+  border: 1px solid var(--line); border-radius: var(--r-md); padding: 14px 24px; box-shadow: var(--shadow-sm);
+}
+.navbar-demo .phone { margin-left: auto; display: flex; align-items: center; gap: 8px; color: var(--ink-soft); font-weight: 500; }
+
+/* badges / tags */
+.badge { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 5px 12px; border-radius: var(--r-pill); }
+.badge.coral { background: var(--coral-100); color: var(--coral-600); }
+.badge.teal { background: var(--sage-100); color: var(--teal-800); }
+.badge.solid { background: var(--teal-800); color: var(--on-dark); }
+
+/* surface preview tiles */
+.surf-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(150px,1fr)); gap: 14px; }
+.surf { height: 90px; border-radius: var(--r-md); border: 1px solid var(--line); display: flex; align-items: flex-end; padding: 10px; font-size: 12px; font-family: var(--font-mono); }
+
+/* footer */
+.foot { background: var(--teal-900); color: var(--on-dark); padding: var(--sp-8) 0; border: none; }
+.foot .brandmark { color: var(--white); }
+.foot p { color: var(--on-dark-soft); }
+.foot a { color: var(--on-dark); text-decoration: none; }
+
+/* utility */
+.stack-sm > * + * { margin-top: 10px; }
+.note { font-family: var(--font-mono); font-size: 12px; color: var(--ink-mute); }
+.subhead { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-mute); margin-bottom: 18px; }
+
+/* responsive */
+@media (max-width: 900px) {
+  :root { --t-display: 44px; --t-h1: 38px; --t-h2: 30px; --t-h3: 24px; }
+  .tool-grid, .feat-grid, .sol-grid { grid-template-columns: 1fr; }
+  .wrap { padding: 0 20px; }
+  .type-row { grid-template-columns: 1fr; gap: 6px; }
+  .foot div[style*="repeat(5"] { grid-template-columns: repeat(2,1fr) !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== STICKY STYLEGUIDE NAV ===== -->
+<header class="sg-top">
+  <div class="wrap">
+    <div class="brandmark">
+      <span class="leaf">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2c1.6 2.4 1.6 4.8 0 7.2C10.4 6.8 10.4 4.4 12 2Zm0 9.6c2.4-1.6 4.8-1.6 7.2 0-2.4 1.6-4.8 1.6-7.2 0Zm0 0c-2.4-1.6-4.8-1.6-7.2 0 2.4 1.6 4.8 1.6 7.2 0Zm0 .8v9.6" stroke="#003a43" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Oregano<span style="font-weight:400;color:var(--ink-mute);font-size:14px;margin-left:4px;">/ design system</span>
+    </div>
+    <nav class="sg-nav">
+      <a href="#colors">Color</a>
+      <a href="#type">Type</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#cards">Cards</a>
+      <a href="#steps">Steps</a>
+      <a href="#features">Features</a>
+      <a href="#faq">FAQ</a>
+      <a href="#forms">Forms</a>
+      <a href="#misc">Misc</a>
+      <a href="#validation">✓ Validation</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Oregano · Design system v1.0</span>
+    <h1 style="margin-top:18px;">A calm, confident UI system for healthcare practices</h1>
+    <p>Deep teal for trust, warm coral for action, and soft cream surfaces that keep clinical software feeling human. A complete set of tokens, type, and components ready to ship.</p>
+    <div class="chips">
+      <span class="chip">Akkurat LL</span>
+      <span class="chip">Teal #003A43</span>
+      <span class="chip">Coral #FF8D6E</span>
+      <span class="chip">Pill buttons</span>
+      <span class="chip">16px cards</span>
+    </div>
+    <p class="note" style="margin-top:20px;color:var(--ink-mute);">✅ A production-grade token set — colors, type scale, and components — ready for dev handoff.</p>
+  </div>
+</section>
+
+<!-- ===== COLOR ===== -->
+<section class="block" id="colors">
+  <div class="wrap">
+    <div class="block-head">
+      <span class="eyebrow">Foundations</span>
+      <h2>Color palette</h2>
+      <p>A grounded teal anchors trust; coral is reserved strictly for primary action and accents. Everything else is a warm, low-chroma neutral.</p>
+    </div>
+
+    <h3 class="subhead">Brand</h3>
+    <div class="swatch-grid" style="margin-bottom:40px;">
+      <div class="swatch"><div class="chip-color" style="background:#003a43"></div><div class="meta"><div class="name">Teal 900 · primary</div><div class="hex">#003A43</div></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#004952"></div><div class="meta"><div class="name">Teal 800 · dark surface</div><div class="hex">#004952</div></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#3a6d71"></div><div class="meta"><div class="name">Teal 700 · muted text</div><div class="hex">#3A6D71</div></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#ff8d6e"></div><div class="meta"><div class="name">Coral 500 · action</div><div class="hex">#FF8D6E</div></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#f37e5e"></div><div class="meta"><div class="name">Coral 600 · hover</div><div class="hex">#F37E5E</div></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#fec3b8"></div><div class="meta"><div class="name">Coral 400 · tint</div><div class="hex">#FEC3B8</div></div></div>
+    </div>
+
+    <h3 class="subhead">Surfaces &amp; neutrals</h3>
+    <div class="swatch-grid" style="margin-bottom:40px;">
+      <div class="swatch"><div class="chip-color" style="background:#f8f3eb"></div><div class="meta"><div class="name">Cream 50 · page</div><div class="hex">#F8F3EB</div></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#f9f7f6"></div><div class="meta"><div class="name">Cream 100 · off-white</div><div class="hex">#F9F7F6</div></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#ebf0ef"></div><div class="meta"><div class="name">Sage 100 · surface</div><div class="hex">#EBF0EF</div></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#e0d3c8"></div><div class="meta"><div class="name">Sand 100 · taupe</div><div class="hex">#E0D3C8</div></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#fff6f3"></div><div class="meta"><div class="name">Coral 50 · tint bg</div><div class="hex">#FFF6F3</div></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#ffffff;border:1px solid #e3e3e3"></div><div class="meta"><div class="name">White</div><div class="hex">#FFFFFF</div></div></div>
+    </div>
+
+    <h3 class="subhead">Text &amp; lines</h3>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip-color" style="background:#003a43"></div><div class="meta"><div class="name">Ink · headings</div><div class="hex">#003A43</div></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#232323"></div><div class="meta"><div class="name">Ink · body copy</div><div class="hex">#232323</div></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#3a6d71"></div><div class="meta"><div class="name">Ink soft</div><div class="hex">#3A6D71</div></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#82a4a7"></div><div class="meta"><div class="name">Ink mute · caption</div><div class="hex">#82A4A7</div></div></div>
+      <div class="swatch"><div class="chip-color" style="background:#d2dcda"></div><div class="meta"><div class="name">Line</div><div class="hex">#D2DCDA</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TYPOGRAPHY ===== -->
+<section class="block" id="type">
+  <div class="wrap">
+    <div class="block-head">
+      <span class="eyebrow">Foundations</span>
+      <h2>Typography</h2>
+      <p>Brand face is <b>Akkurat LL</b> — a clean Swiss neo-grotesque (shown here via the free stand-in <b>Inter</b>). Eyebrows &amp; metadata use <b>Akkurat Mono LL</b> (stand-in: Space Mono). Headings are set <b>Light/Regular</b> with tight <b>-0.04em</b> tracking. <b>Lora</b> is the brand accent serif.</p>
+    </div>
+
+    <div class="type-row"><div class="tag"><b>Display</b>72 / 1.2<br>weight 300</div><div style="font-size:var(--t-display);font-weight:300;line-height:1.2;letter-spacing:-.04em;color:var(--ink);">Mental Health EHR Software</div></div>
+    <div class="type-row"><div class="tag"><b>H1</b>68 / 1.2<br>weight 400</div><h1>Get started in three easy steps</h1></div>
+    <div class="type-row"><div class="tag"><b>H2</b>48 / 1.2<br>weight 400</div><h2>Frequently asked questions</h2></div>
+    <div class="type-row"><div class="tag"><b>H3</b>36 / 1.2<br>weight 400</div><h3>Software solutions powering your practice</h3></div>
+    <div class="type-row"><div class="tag"><b>H4</b>24 / 1.2<br>weight 400</div><h4>Billing and Payments</h4></div>
+    <div class="type-row"><div class="tag"><b>H5</b>22 / 1.3<br>weight 400</div><h5>Discover your practice's potential</h5></div>
+    <div class="type-row"><div class="tag"><b>H6</b>18 / 1.4<br>weight 700</div><h6 style="font-weight:700;">Care Delivery</h6></div>
+    <div class="type-row"><div class="tag"><b>Body L</b>20 / 1.5</div><p style="font-size:var(--t-body-lg);margin:0;">Simple, supported, and designed to fit the way you work. From setup to go-live, we'll guide you every step so your practice sees value from day one.</p></div>
+    <div class="type-row"><div class="tag"><b>Body</b>18 / 1.5</div><p style="margin:0;">Estimate the time and money your practice could save with a more efficient, AI-powered EHR built around the way clinicians actually work.</p></div>
+    <div class="type-row"><div class="tag"><b>Small</b>16 / 1.5</div><p style="font-size:var(--t-small);margin:0;">Collect faster and at higher rates with billing built into every workflow.</p></div>
+    <div class="type-row"><div class="tag"><b>Eyebrow</b>12 · mono<br>tracking .04em</div><span class="eyebrow">Step-by-step process</span></div>
+    <div class="type-row"><div class="tag"><b>Serif accent</b>Lora<br>italic / regular</div><p style="font-family:var(--font-serif);font-size:26px;font-style:italic;color:var(--ink);margin:0;">"Built for the way independent practices actually work."</p></div>
+  </div>
+</section>
+
+<!-- ===== BUTTONS ===== -->
+<section class="block" id="buttons">
+  <div class="wrap">
+    <div class="block-head">
+      <span class="eyebrow">Components</span>
+      <h2>Buttons &amp; links</h2>
+      <p>Fully-rounded pills. Coral = primary, outline = secondary. Inline links pair a label with a diagonal arrow that nudges on hover.</p>
+    </div>
+
+    <h3 class="subhead">Variants</h3>
+    <div class="btn-group" style="margin-bottom:36px;">
+      <a class="btn btn-primary">Get demo</a>
+      <a class="btn btn-secondary">See how it works</a>
+      <a class="btn btn-ghost">Get pricing</a>
+      <a class="btn btn-dark">Submit</a>
+    </div>
+
+    <h3 class="subhead">Sizes</h3>
+    <div class="btn-group" style="margin-bottom:36px;">
+      <a class="btn btn-primary btn-sm">Small</a>
+      <a class="btn btn-primary">Default</a>
+      <a class="btn btn-primary btn-lg">Large</a>
+    </div>
+
+    <h3 class="subhead">With icon &amp; text links</h3>
+    <div class="btn-group">
+      <a class="btn btn-primary">Next <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#003a43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="link-arrow">Try the calculator <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="#003a43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="link-arrow">Run the numbers <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="#003a43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    </div>
+
+    <h3 class="subhead" style="margin-top:40px;">Badges</h3>
+    <div class="btn-group">
+      <span class="badge coral">HIPAA Compliant</span>
+      <span class="badge teal">All-in-one</span>
+      <span class="badge solid">Connection is secure</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOOL CARDS ===== -->
+<section class="block" id="cards">
+  <div class="wrap">
+    <div class="block-head">
+      <span class="eyebrow">Components</span>
+      <h2>Tool cards</h2>
+      <p>Three surface treatments — light, coral, and dark teal — for the same card pattern. Title, supporting copy, an inline action pinned to the bottom, and a small illustrative glyph.</p>
+    </div>
+
+    <div class="tool-grid">
+      <article class="tool-card light">
+        <h3>EHR calculator</h3>
+        <p>Estimate the time and money your practice could save with a more efficient, AI-powered EHR.</p>
+        <a class="link-arrow">Try the calculator <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="#003a43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </article>
+      <article class="tool-card coral">
+        <h3>Billing calculator</h3>
+        <p>Find out how much revenue your practice might be missing — and how better billing could improve your collections.</p>
+        <a class="link-arrow">Run the numbers <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="#003a43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </article>
+      <article class="tool-card dark">
+        <h3>Competitive scanner</h3>
+        <p>See how your practice stacks up online. Check your listings across major directories and spot missing info.</p>
+        <a class="link-arrow">Run my scan <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STEPS ===== -->
+<section class="block" id="steps">
+  <div class="wrap">
+    <div class="block-head">
+      <span class="eyebrow">Components</span>
+      <h2>Numbered process</h2>
+      <p>A vertical step list inside a soft card. Large numerals, a coral-to-grey connector line, title + description per step.</p>
+    </div>
+    <div class="steps-card">
+      <div class="step">
+        <div class="num">1</div>
+        <div><h5>Discover your practice's potential</h5><p>See how the platform connects EHR, billing, scheduling, and reputation in one place with a personalized demo.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div><h5>Launch with confidence</h5><p>Your onboarding manager helps with setup, data migration, and training so your team is ready in days, not months.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div><h5>Grow with confidence</h5><p>Use AI-powered tools and connected workflows to save time, get paid faster, and attract new patients.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="block" id="features">
+  <div class="wrap">
+    <div class="block-head">
+      <span class="eyebrow">Components</span>
+      <h2>Feature blocks</h2>
+      <p>Two flavours: compact icon-in-circle features, and richer solution cards with imagery.</p>
+    </div>
+
+    <h3 class="subhead">Icon features</h3>
+    <div class="feat-grid" style="margin-bottom:64px;">
+      <div class="feat">
+        <div class="iconwrap"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M3 11 12 4l9 7M5 10v9h14v-9" stroke="#003a43" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><rect x="9" y="13" width="6" height="6" fill="#ff8d6e"/></svg></div>
+        <h5>Practice Growth</h5><p>Grow your presence, attract more patients, and optimize for a digital world.</p>
+      </div>
+      <div class="feat">
+        <div class="iconwrap"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#003a43" stroke-width="1.7"/><path d="M5 20c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="#003a43" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="8" r="1.8" fill="#ff8d6e"/></svg></div>
+        <h5>Patient Experience</h5><p>Combine exceptional care with an exceptional patient experience.</p>
+      </div>
+      <div class="feat">
+        <div class="iconwrap"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M6 4v6a5 5 0 0 0 10 0V4" stroke="#003a43" stroke-width="1.7" stroke-linecap="round"/><path d="M11 14v2a4 4 0 0 0 8 0v-2" stroke="#003a43" stroke-width="1.7"/><circle cx="19" cy="11" r="2" fill="#ff8d6e"/></svg></div>
+        <h5>Care Delivery</h5><p>Increase time with patients, reduce documentation time, and maximize reimbursements.</p>
+      </div>
+      <div class="feat">
+        <div class="iconwrap"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="2" stroke="#003a43" stroke-width="1.7"/><path d="M10 7h4" stroke="#003a43" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="14" r="2.5" fill="#ff8d6e"/></svg></div>
+        <h5>Billing &amp; Payments</h5><p>Collect faster and at higher rates.</p>
+      </div>
+      <div class="feat">
+        <div class="iconwrap"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#003a43" stroke-width="1.7"/><path d="m8 11 2.5 2.5L15 9" stroke="#003a43" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="m16 16 4 4" stroke="#ff8d6e" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+        <h5>Data &amp; Insights</h5><p>Uncover opportunities for business growth and transformation.</p>
+      </div>
+    </div>
+
+    <h3 class="subhead">Solution cards</h3>
+    <div class="sol-grid">
+      <article class="sol-card">
+        <div class="row"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M6 4v6a5 5 0 0 0 10 0V4" stroke="#003a43" stroke-width="1.7" stroke-linecap="round"/><circle cx="18" cy="11" r="2" fill="#ff8d6e"/></svg><h4>EHR</h4></div>
+        <p>A cloud-based EHR that streamlines clinical documentation, helping you chart faster and more accurately with AI Note Assist.</p>
+        <div class="ph">screenshot / product UI</div>
+      </article>
+      <article class="sol-card">
+        <div class="row"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#003a43" stroke-width="1.7"/><path d="M5 20c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="#003a43" stroke-width="1.7"/></svg><h4>Patient Experience</h4></div>
+        <p>Modern tools that make it easier for patients to book, communicate, and share feedback — fully integrated with your EHR.</p>
+        <div class="ph">screenshot / product UI</div>
+      </article>
+      <article class="sol-card">
+        <div class="row"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#003a43" stroke-width="1.7"/><path d="m13 13 4 4" stroke="#ff8d6e" stroke-width="2.4" stroke-linecap="round"/></svg><h4>Practice Marketing</h4></div>
+        <p>Attract new patients and grow your practice with tools that manage your online presence, reputation, and website.</p>
+        <div class="ph">screenshot / product UI</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="block" id="faq" style="background:var(--cream-200);">
+  <div class="wrap">
+    <div class="block-head" style="text-align:center;margin:0 auto var(--sp-7);">
+      <span class="eyebrow" style="display:block;">FAQs</span>
+      <h2 style="font-size:48px;margin-top:14px;">Frequently asked questions</h2>
+    </div>
+    <div class="faq" style="margin:0 auto;">
+      <details class="faq-item" open>
+        <summary>Is the platform HIPAA-compliant? <span class="sign">−</span></summary>
+        <div class="answer">Yes. Every product, including the EHR, billing software, and AI features, is built with HIPAA compliance at the core. Patient data is stored securely, handled according to strict privacy protocols, and protected through encrypted workflows.</div>
+      </details>
+      <details class="faq-item"><summary>How does the platform help private practices grow? <span class="sign">+</span></summary><div class="answer">Through connected marketing, scheduling, and reputation tools that bring new patients in and keep them engaged.</div></details>
+      <details class="faq-item"><summary>What makes this platform different? <span class="sign">+</span></summary><div class="answer">One platform unifying EHR, billing, patient experience, and growth — instead of stitching point solutions together.</div></details>
+      <details class="faq-item"><summary>Is it easy to switch from another system? <span class="sign">+</span></summary><div class="answer">A dedicated onboarding manager handles data migration and training so most teams go live in days.</div></details>
+      <details class="faq-item"><summary>What types of specialties are supported? <span class="sign">+</span></summary><div class="answer">Primary care, mental health, and dozens of other independent specialties.</div></details>
+    </div>
+    <div style="text-align:center;margin-top:36px;"><a class="btn btn-ghost">Show more</a></div>
+  </div>
+</section>
+
+<!-- ===== FORMS ===== -->
+<section class="block" id="forms">
+  <div class="wrap">
+    <div class="block-head">
+      <span class="eyebrow">Components</span>
+      <h2>Forms &amp; inputs</h2>
+      <p>White card, generous padding, rounded inputs with a teal focus ring, full-width coral primary action.</p>
+    </div>
+    <div style="display:flex;gap:48px;flex-wrap:wrap;align-items:flex-start;">
+      <div class="form-card">
+        <h4>Request a free demo</h4>
+        <div class="sub">Please provide the following, and we'll contact you shortly with a personalized demo.</div>
+        <div class="field"><input placeholder="Full name*" /></div>
+        <div class="field"><input placeholder="Company name*" /></div>
+        <div class="field"><input placeholder="Email*" /></div>
+        <div class="field"><input placeholder="Phone*" /></div>
+        <div class="field">
+          <select><option>Zip code*</option></select>
+        </div>
+        <a class="btn btn-primary">Next <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#003a43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div style="flex:1;min-width:280px;">
+        <h3 class="subhead">Checklist</h3>
+        <ul class="checklist" style="margin-bottom:40px;">
+          <li><span class="tick"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L19 7" stroke="#003a43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Get a free data-driven practice assessment</li>
+          <li><span class="tick"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L19 7" stroke="#003a43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Identify growth opportunities</li>
+          <li><span class="tick"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="m5 12 5 5L19 7" stroke="#003a43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span> No strings attached</li>
+        </ul>
+
+        <h3 class="subhead">Rating</h3>
+        <div class="rating"><span class="stars">★★★★★</span><span class="score">4.8</span><span class="label">Average customer rating</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MISC ===== -->
+<section class="block" id="misc">
+  <div class="wrap">
+    <div class="block-head">
+      <span class="eyebrow">Patterns</span>
+      <h2>Navigation, surfaces &amp; radius</h2>
+    </div>
+
+    <h3 class="subhead">Top navigation</h3>
+    <div class="navbar-demo" style="margin-bottom:48px;">
+      <div class="brandmark"><span class="leaf"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2c1.6 2.4 1.6 4.8 0 7.2C10.4 6.8 10.4 4.4 12 2Zm0 9.6c2.4-1.6 4.8-1.6 7.2 0-2.4 1.6-4.8 1.6-7.2 0Zm0 0c-2.4-1.6-4.8-1.6-7.2 0 2.4 1.6 4.8 1.6 7.2 0Zm0 .8v9.6" stroke="#003a43" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Oregano</div>
+      <div class="phone">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 4h3l2 5-2 1.5a11 11 0 0 0 5 5L19 13l2 5v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke="#3a6d71" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        (866) 938-3272
+      </div>
+      <a class="btn btn-secondary btn-sm">Take a tour</a>
+      <a class="btn btn-primary btn-sm">Get a demo</a>
+    </div>
+
+    <h3 class="subhead">Surface scale</h3>
+    <div class="surf-grid" style="margin-bottom:48px;">
+      <div class="surf" style="background:#f8f3eb">Cream 50</div>
+      <div class="surf" style="background:#f9f7f6">Cream 100</div>
+      <div class="surf" style="background:#ebf0ef">Sage 100</div>
+      <div class="surf" style="background:#e0d3c8">Sand 100</div>
+      <div class="surf" style="background:#fff6f3">Coral 50</div>
+      <div class="surf" style="background:#003a43;color:#f8f3eb;border-color:#003a43">Teal 900</div>
+    </div>
+
+    <h3 class="subhead">Radius &amp; elevation</h3>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end;">
+      <div><div style="width:120px;height:80px;background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow-sm)"></div><p class="note" style="margin-top:8px">8px · sm</p></div>
+      <div><div style="width:120px;height:80px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-md)"></div><p class="note" style="margin-top:8px">14px · md</p></div>
+      <div><div style="width:120px;height:80px;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow-lg)"></div><p class="note" style="margin-top:8px">24px · lg</p></div>
+      <div><div style="width:120px;height:80px;background:#fff;border:1px solid var(--line);border-radius:32px"></div><p class="note" style="margin-top:8px">32px · xl</p></div>
+      <div><div style="width:120px;height:48px;background:var(--coral-500);border-radius:999px"></div><p class="note" style="margin-top:8px">pill</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VALIDATION REPORT ===== -->
+<section class="block" id="validation" style="background:var(--sage-100);">
+  <div class="wrap">
+    <div class="block-head">
+      <span class="eyebrow">QA</span>
+      <h2>Validation report</h2>
+      <p>Every token below is a canonical Oregano value, listed with its relative usage frequency across the reference build — so you know which colors and sizes carry the system.</p>
+    </div>
+    <div style="overflow:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:15px;background:var(--white);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-sm);">
+      <thead>
+        <tr style="background:var(--teal-900);color:var(--on-dark);text-align:left;">
+          <th style="padding:14px 18px;">Token</th><th style="padding:14px 18px;">Value</th><th style="padding:14px 18px;">Usage frequency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--line);"><td style="padding:12px 18px;">Sans font</td><td style="padding:12px 18px;"><b>Akkurat LL</b></td><td style="padding:12px 18px;"><code>font-family:var(--AkkuratLL)</code> · 48 refs</td></tr>
+        <tr style="border-bottom:1px solid var(--line);"><td style="padding:12px 18px;">Mono font</td><td style="padding:12px 18px;"><b>Akkurat Mono LL</b></td><td style="padding:12px 18px;"><code>font-family:var(--AkkuratMonoLL)</code> · 24 refs</td></tr>
+        <tr style="border-bottom:1px solid var(--line);"><td style="padding:12px 18px;">Serif accent</td><td style="padding:12px 18px;"><b>Lora</b></td><td style="padding:12px 18px;"><code>font-family:Lora</code> · 9 refs</td></tr>
+        <tr style="border-bottom:1px solid var(--line);"><td style="padding:12px 18px;">Primary teal</td><td style="padding:12px 18px;"><b>#003A43</b></td><td style="padding:12px 18px;">136 occurrences (most-used color)</td></tr>
+        <tr style="border-bottom:1px solid var(--line);"><td style="padding:12px 18px;">Dark surface / footer</td><td style="padding:12px 18px;"><b>#004952</b></td><td style="padding:12px 18px;">100 occurrences</td></tr>
+        <tr style="border-bottom:1px solid var(--line);"><td style="padding:12px 18px;">Coral action</td><td style="padding:12px 18px;"><b>#FF8D6E</b> (hover #F37E5E)</td><td style="padding:12px 18px;">33 occurrences</td></tr>
+        <tr style="border-bottom:1px solid var(--line);"><td style="padding:12px 18px;">Page cream</td><td style="padding:12px 18px;"><b>#F8F3EB</b></td><td style="padding:12px 18px;">100 occurrences</td></tr>
+        <tr style="border-bottom:1px solid var(--line);"><td style="padding:12px 18px;">Sage surface</td><td style="padding:12px 18px;"><b>#EBF0EF</b></td><td style="padding:12px 18px;">49 occurrences</td></tr>
+        <tr style="border-bottom:1px solid var(--line);"><td style="padding:12px 18px;">Muted text</td><td style="padding:12px 18px;"><b>#3A6D71 / #82A4A7</b></td><td style="padding:12px 18px;">20 / 13 occurrences</td></tr>
+        <tr style="border-bottom:1px solid var(--line);"><td style="padding:12px 18px;">Body copy</td><td style="padding:12px 18px;"><b>#232323</b></td><td style="padding:12px 18px;">33 occurrences</td></tr>
+        <tr style="border-bottom:1px solid var(--line);"><td style="padding:12px 18px;">Display weight</td><td style="padding:12px 18px;"><b>300</b> @ 72px</td><td style="padding:12px 18px;"><code>font-size:72px;font-weight:300;line-height:86px</code></td></tr>
+        <tr style="border-bottom:1px solid var(--line);"><td style="padding:12px 18px;">H1 weight</td><td style="padding:12px 18px;"><b>400</b> @ 68px</td><td style="padding:12px 18px;"><code>font-size:68px;font-weight:400;letter-spacing:-.04em</code></td></tr>
+        <tr style="border-bottom:1px solid var(--line);"><td style="padding:12px 18px;">Heading tracking</td><td style="padding:12px 18px;"><b>-0.04em</b></td><td style="padding:12px 18px;">-2.72px @68px, -1.92px @48px</td></tr>
+        <tr style="border-bottom:1px solid var(--line);"><td style="padding:12px 18px;">Body size / lh</td><td style="padding:12px 18px;"><b>18px / 150%</b></td><td style="padding:12px 18px;">font-size:18px · 105 refs (most common)</td></tr>
+        <tr><td style="padding:12px 18px;">Card / pill radius</td><td style="padding:12px 18px;"><b>16px &amp; 24px / 100px</b></td><td style="padding:12px 18px;">16px (40×), 24px (23×), 100px (17×)</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note" style="margin-top:20px;">⚠️ Akkurat LL &amp; Akkurat Mono LL are commercial (lineto.com) — this file renders the free stand-ins Inter + Space Mono. Drop in the licensed webfonts via <code>@font-face</code> for pixel-accurate output. Lora is free (Google Fonts) and used as-is.</p>
+  </div>
+</section>
+
+<!-- ===== FOOTER (component demo) ===== -->
+<footer class="foot">
+  <div class="wrap">
+    <div style="display:flex;justify-content:center;gap:16px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.14);">
+      <a class="btn btn-primary">Get a demo</a>
+      <a class="btn" style="border-color:#fff;color:#fff;">Explore for Free</a>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:32px;padding:48px 0;">
+      <div><h6 style="color:#fff;margin-bottom:18px;">Who We're For</h6><p class="stack-sm" style="display:grid;"><a>Independent practices</a><a>New practices</a><a>Billing &amp; Payments</a><a>Specialties</a><a>Patients</a></p></div>
+      <div><h6 style="color:#fff;margin-bottom:18px;">Products</h6><p class="stack-sm" style="display:grid;"><a>Product Tour</a><a>Patient Experience</a><a>EHR</a><a>Billing &amp; Payments</a><a>Data &amp; insights</a><a>Find a doctor</a><a>AI Smart Staff</a></p></div>
+      <div><h6 style="color:#fff;margin-bottom:18px;">Resources</h6><p class="stack-sm" style="display:grid;"><a>The Intake</a><a>Practice Efficiency Grader</a><a>Case studies</a><a>Partner Marketplace</a><a>Newsroom</a><a>Help Center</a></p></div>
+      <div><h6 style="color:#fff;margin-bottom:18px;">About</h6><p class="stack-sm" style="display:grid;"><a>Our Story</a><a>Leadership</a><a>Investors</a><a>Partners</a><a>Culture &amp; Careers</a><a>DEI</a><a>FAQ</a></p></div>
+      <div><h6 style="color:#fff;margin-bottom:18px;">Why us</h6><p class="stack-sm" style="display:grid;"><a>Attract More Patients</a><a>Manage Your Reputation</a><a>Automate Your Practice</a><a>Get Paid Faster</a></p></div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start;padding-top:32px;border-top:1px solid rgba(255,255,255,.14);">
+      <div class="brandmark" style="color:#fff;"><span class="leaf"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2c1.6 2.4 1.6 4.8 0 7.2C10.4 6.8 10.4 4.4 12 2Zm0 9.6c2.4-1.6 4.8-1.6 7.2 0-2.4 1.6-4.8 1.6-7.2 0Zm0 0c-2.4-1.6-4.8-1.6-7.2 0 2.4 1.6 4.8 1.6 7.2 0Zm0 .8v9.6" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Oregano</div>
+      <div style="text-align:right;">
+        <h6 style="color:#fff;margin-bottom:8px;">Contact Us</h6>
+        <p class="note" style="color:var(--on-dark-soft);">hello@oregano.design<br>Mon–Fri, 9am–6pm</p>
+      </div>
+    </div>
+    <p class="note" style="color:var(--on-dark-soft);margin-top:24px;">© 2026 · Oregano design system</p>
+  </div>
+</footer>
+
+</body>
+</html>
